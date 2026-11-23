@@ -1,0 +1,11 @@
+{
+  "name": "promemoria-farmaci",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:db": "node --test supabase/tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.6.0"
+  }
+}

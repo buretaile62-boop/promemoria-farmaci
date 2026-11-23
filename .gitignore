@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.*
+!.env.example
+# Android
+android-anziano/.gradle/
+android-anziano/build/
+android-anziano/app/build/
+android-anziano/local.properties
+android-anziano/.idea/
+*.iml
+*.jks
+*.keystore
+# Expo
+app-tutore/node_modules/
+app-tutore/.expo/
+app-tutore/dist/
+app-tutore/android/
+app-tutore/ios/
