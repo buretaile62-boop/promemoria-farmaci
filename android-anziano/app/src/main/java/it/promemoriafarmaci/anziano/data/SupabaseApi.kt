@@ -33,12 +33,12 @@ class SupabaseApi(private val store: Store) {
     val isConfigured get() = url.startsWith("https://") && key.length > 20
 
     private fun post(path: String, body: String, bearer: String? = null): String {
-        val request = Request.Builder()
+        // Le chiavi "sb_publishable_…" vanno solo in "apikey"; Authorization porta il token utente.
+        val builder = Request.Builder()
             .url("$url$path")
             .header("apikey", key)
-            .header("Authorization", "Bearer ${bearer ?: key}")
-            .post(body.toRequestBody(jsonType))
-            .build()
+        if (bearer != null) builder.header("Authorization", "Bearer $bearer")
+        val request = builder.post(body.toRequestBody(jsonType)).build()
         http.newCall(request).execute().use { res ->
             val text = res.body?.string().orEmpty()
             if (!res.isSuccessful) throw ApiException(res.code, text)
